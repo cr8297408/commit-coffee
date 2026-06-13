@@ -5,13 +5,13 @@ const features = [
     icon: "⚡",
     title: "Sesiones profundas",
     description: "Construido para sesiones profundas de trabajo sin interrupciones.",
-    image: null,
+    image: "/card1.png",
   },
   {
     icon: "🌎",
     title: "Origen colombiano",
     description: "Café de origen colombiano, seleccionado directamente desde Huila.",
-    image: null,
+    image: "/card2.png",
   },
   {
     icon: "🍯",
@@ -23,7 +23,7 @@ const features = [
     icon: "☕",
     title: "Perfil balanceado",
     description: "Perfil dulce y balanceado, ideal para tomar negro o con leche.",
-    image: null,
+    image: "/card3.png",
   },
 ];
 
