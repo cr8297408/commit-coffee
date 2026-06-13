@@ -76,12 +76,12 @@ export default function Hero() {
 
       <div className="relative z-10 flex-1 flex flex-col justify-center max-w-7xl mx-auto w-full px-8 pt-28 pb-12">
         <div className="max-w-xl">
-          <p className="font-mono text-[#00FF88] text-sm tracking-[0.25em] mb-6 uppercase">
+          <p className="font-mono text-[#00FF88] text-sm tracking-[0.25em] mb-6 uppercase reveal-text">
             &gt; Fuel for Builders_
           </p>
 
           <h1
-            className="font-black uppercase leading-[0.9] tracking-tight mb-8"
+            className="font-black uppercase leading-[0.9] tracking-tight mb-8 reveal-text"
             style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)" }}
           >
             <span className="block text-[#F5F5F5]">Fuel For</span>
@@ -92,12 +92,12 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="text-[#aaaaaa] text-base md:text-lg leading-relaxed mb-10 max-w-sm">
+          <p className="text-[#aaaaaa] text-base md:text-lg leading-relaxed mb-10 max-w-sm reveal-text">
             Café de origen Huila diseñado para programadores, ingenieros, técnicos
             y creadores.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 reveal-text">
             <a
               href="#producto"
               className="group flex items-center gap-3 bg-[#00FF88] text-black font-bold text-sm tracking-widest uppercase px-7 py-4 rounded-md hover:bg-[#00e87a] transition-all duration-200 hover:gap-5"
@@ -121,8 +121,8 @@ export default function Hero() {
           {specs.map((spec, i) => (
             <div
               key={spec.label}
-              className="flex items-start gap-3 opacity-0 animate-[fadeInUp_0.5s_ease-out_forwards]"
-              style={{ animationDelay: `${i * 100 + 500}ms` }}
+              className="flex items-start gap-3 reveal-text"
+              style={{ transitionDelay: `${i * 100}ms` }}
             >
               <span className="text-[#00FF88] mt-0.5 shrink-0">{spec.icon}</span>
               <div>
@@ -137,19 +137,6 @@ export default function Hero() {
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   );
 }
