@@ -80,10 +80,10 @@ export default function WhyCommit() {
     <section className="py-24 px-6 bg-[#111111]">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
-          <p className="text-[#00FF88] font-mono text-sm tracking-widest mb-3 reveal-text">
+          <p className="text-[#00FF88] font-mono text-sm tracking-widest mb-3">
             // WHY
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#F5F5F5] reveal-text">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#F5F5F5]">
             Por qué Commit Coffee
           </h2>
         </div>
