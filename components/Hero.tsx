@@ -1,4 +1,7 @@
+'use client';
+
 import Image from "next/image";
+import { useTypingEffect } from "@/hooks/useTypingEffect";
 
 const specs = [
   {
@@ -45,10 +48,13 @@ const specs = [
   },
 ];
 
+const typingWords = ["build", "create", "ship", "code", "deploy"];
+
 export default function Hero() {
+  const { displayedText } = useTypingEffect(typingWords, 120, 60, 2500);
+
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
-      {/* Full-bleed background image */}
       <div className="absolute inset-0">
         <Image
           src="/hero.png"
@@ -58,7 +64,6 @@ export default function Hero() {
           priority
           quality={95}
         />
-        {/* Horizontal gradient: solid left → transparent right */}
         <div
           className="absolute inset-0"
           style={{
@@ -66,61 +71,59 @@ export default function Hero() {
               "linear-gradient(to right, #111111 0%, #111111 30%, rgba(17,17,17,0.85) 50%, rgba(17,17,17,0.3) 70%, rgba(17,17,17,0.0) 100%)",
           }}
         />
-        {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#111111] to-transparent" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 flex-1 flex flex-col justify-center max-w-7xl mx-auto w-full px-8 pt-28 pb-12">
         <div className="max-w-xl">
-          {/* Terminal label */}
           <p className="font-mono text-[#00FF88] text-sm tracking-[0.25em] mb-6 uppercase">
             &gt; Fuel for Builders_
           </p>
 
-          {/* Main title */}
           <h1
             className="font-black uppercase leading-[0.9] tracking-tight mb-8"
             style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)" }}
           >
             <span className="block text-[#F5F5F5]">Fuel For</span>
             <span className="block text-[#F5F5F5]">
-              Builders
+              <span className="text-[#00FF88]">{displayedText}</span>
+              <span className="animate-pulse">|</span>
               <span className="text-[#00FF88]">.</span>
             </span>
           </h1>
 
-          {/* Subtitle */}
           <p className="text-[#aaaaaa] text-base md:text-lg leading-relaxed mb-10 max-w-sm">
             Café de origen Huila diseñado para programadores, ingenieros, técnicos
             y creadores.
           </p>
 
-          {/* CTAs */}
           <div className="flex flex-wrap gap-4">
             <a
               href="#producto"
-              className="flex items-center gap-3 bg-[#00FF88] text-black font-bold text-sm tracking-widest uppercase px-7 py-4 rounded-md hover:bg-[#00e87a] transition-all duration-200"
+              className="group flex items-center gap-3 bg-[#00FF88] text-black font-bold text-sm tracking-widest uppercase px-7 py-4 rounded-md hover:bg-[#00e87a] transition-all duration-200 hover:gap-5"
             >
               Comprar Ahora
-              <span className="text-base">→</span>
+              <span className="text-base transition-transform group-hover:translate-x-1">→</span>
             </a>
             <a
               href="#origen"
-              className="flex items-center gap-3 bg-transparent border border-[#F5F5F5]/30 text-[#F5F5F5] font-bold text-sm tracking-widest uppercase px-7 py-4 rounded-md hover:border-[#F5F5F5]/70 hover:bg-[#F5F5F5]/5 transition-all duration-200"
+              className="group flex items-center gap-3 bg-transparent border border-[#F5F5F5]/30 text-[#F5F5F5] font-bold text-sm tracking-widest uppercase px-7 py-4 rounded-md hover:border-[#00FF88]/50 hover:bg-[#00FF88]/5 transition-all duration-200"
             >
               Conoce el Origen
-              <span className="text-base">→</span>
+              <span className="text-base transition-transform group-hover:translate-x-1">→</span>
             </a>
           </div>
         </div>
       </div>
 
-      {/* Bottom specs bar */}
       <div className="relative z-10 max-w-7xl mx-auto w-full px-8 pb-10">
         <div className="flex flex-wrap items-start gap-8 md:gap-12">
-          {specs.map((spec) => (
-            <div key={spec.label} className="flex items-start gap-3">
+          {specs.map((spec, i) => (
+            <div
+              key={spec.label}
+              className="flex items-start gap-3 opacity-0 animate-[fadeInUp_0.5s_ease-out_forwards]"
+              style={{ animationDelay: `${i * 100 + 500}ms` }}
+            >
               <span className="text-[#00FF88] mt-0.5 shrink-0">{spec.icon}</span>
               <div>
                 <p className="text-[#888888] text-[10px] font-mono tracking-widest uppercase mb-0.5">
@@ -134,6 +137,19 @@ export default function Hero() {
           ))}
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 }
