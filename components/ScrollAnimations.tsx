@@ -14,21 +14,23 @@ export default function ScrollAnimations({ children }: { children: React.ReactNo
     initialized.current = true;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo('.stagger-cards > *',
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-          stagger: 0.12,
-          scrollTrigger: {
-            trigger: '.stagger-cards',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
+      gsap.utils.toArray('section').forEach((section: any) => {
+        gsap.fromTo(section,
+          { opacity: 0.7 },
+          {
+            opacity: 1,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 80%',
+              end: 'top 30%',
+              scrub: false,
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      });
     });
 
     return () => ctx.revert();
